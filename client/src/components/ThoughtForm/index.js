@@ -7,6 +7,21 @@ const ThoughtForm = () => {
   });
   const [characterCount, setCharacterCount] = useState(0);
 
+  const postData = async () => {
+    const res = await fetch ('/api/users', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formState)
+    });
+    const data = await res.json();
+    console.log(data);
+  };
+
+  postData();
+
   // update state based on form input changes
   const handleChange = (event) => {
     if (event.target.value.length <= 280) {
